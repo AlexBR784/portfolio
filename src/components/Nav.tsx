@@ -5,7 +5,7 @@ export function Nav() {
     <nav className="flex items-center justify-between p-4 bg-[#212121] rounded-xl text-white drop-shadow-white/20 drop-shadow-sm">
       <ul className="flex space-x-4">
         <li>
-          <Link href="/" className="hover:underline">
+          <Link href="#home" className="hidden hover:underline">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="32"
@@ -25,28 +25,7 @@ export function Nav() {
           </Link>
         </li>
         <li>
-          <Link href="/about" className="hover:underline">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="32"
-              height="32"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#646464"
-              stroke-width="1"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              className="hover:stroke-[#7e7e7e] transition-all hover:bg-[#373737] hover:rounded-full hover:p-0.5"
-            >
-              <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
-              <path d="M6 21v-2a4 4 0 0 1 4 -4h3.5" />
-              <path d="M19 22v.01" />
-              <path d="M19 19a2.003 2.003 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483" />
-            </svg>
-          </Link>
-        </li>
-        <li>
-          <Link href="/experience" className="hover:underline">
+          <Link href="#experience" className="hover:underline">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="32"
@@ -65,7 +44,7 @@ export function Nav() {
           </Link>
         </li>
         <li>
-          <Link href="/projects" className="hover:underline">
+          <Link href="#projects" className="hover:underline">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="32"

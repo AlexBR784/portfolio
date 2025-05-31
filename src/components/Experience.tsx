@@ -18,8 +18,8 @@ export function Experience() {
 
   return (
     <>
-      <div className="flex flex-col justify-center p-1 bg-[#212121] w-full h-full mt-5  rounded-xl border-2 shadow-xl border-[#2a2a2a]">
-        <p className="text-gray-300 px-5 pt-5">· Certificaciones ·</p>
+      <div id="experience" className="flex flex-col justify-center p-1 bg-[#212121] w-full h-full mt-5  rounded-xl border-2 shadow-xl border-[#2a2a2a]">
+        <p className="text-gray-300 px-5 pt-5 text-lg">· Certificaciones ·</p>
         <div className="relative overflow-hidden w-full p-3 ">
           <motion.div
             className="flex mt-5 w-max"

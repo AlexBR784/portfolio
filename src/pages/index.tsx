@@ -7,7 +7,7 @@ import { Projects } from "@/components/Projects";
 export default function Home() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-[#161616]">
-      <div className="bg-[#161616] w-1/3 pt-10 pb-5 flex flex-col">
+      <div className="bg-[#161616] w-full xl:w-1/2 2xl:w-1/3  pt-10 pb-5 flex flex-col">
         <Nav />
         <Hero />
         <Projects />

@@ -1,7 +1,7 @@
 export function Contact() {
   return (
     <footer className="flex flex-row justify-between p-1 items-center bg-[#212121] w-full h-full mt-5 mb-5  rounded-xl border-2 shadow-xl border-[#2a2a2a]">
-      <p className="text-gray-300 px-5 pt-5 pb-5">· Contacto ·</p>
+      <p className="text-gray-300 px-5 pt-5 pb-5 text-lg">· Contacto ·</p>
       <div className="flex flex-row justify-center items-center gap-2 mr-5">
         <svg
           xmlns="http://www.w3.org/2000/svg"
