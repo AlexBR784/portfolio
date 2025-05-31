@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const certs = [
   "AI-Associate",
@@ -31,9 +32,11 @@ export function Experience() {
           >
             {certsDupe.map((cert, index) => (
               <div key={index} className="flex-shrink-0 px-4 rounded mx-2">
-                <img
+                <Image
                   src={`/images/certis/${cert}.webp`}
                   alt={cert}
+                  width={64}
+                  height={64}
                   className="w-16 h-16"
                 />
               </div>

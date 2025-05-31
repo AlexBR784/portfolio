@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export function Hero() {
   return (
     <div className="flex flex-col items-center justify-center px-6 bg-[#212121] w-full h-full mt-5 rounded-xl pt-5 pb-5 border-2 shadow-xl border-[#2a2a2a]">
@@ -21,9 +23,11 @@ export function Hero() {
               en Salesforce CRM.
             </div>
           </div>
-          <img
+          <Image
             src="/images/profile-pic.png"
             alt="Alejandro Bernardo"
+            width={128}
+            height={128}
             className="rounded-full w-32 h-32 border-10 border-[#c3c8d7]/5"
           />
         </div>

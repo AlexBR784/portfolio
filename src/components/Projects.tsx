@@ -1,5 +1,17 @@
 import { projects } from "@/data/projects.js";
 import { ProjectItem } from "./ProjectItem";
+
+interface Project {
+  id: string | number;
+  title: string;
+  description: string;
+  imageUrl: string;
+  link: string;
+  tech: {
+    techName: string;
+    color: string;
+  }[];
+}
 export function Projects() {
   return (
     <div className="flex flex-col items-center justify-center px-6 bg-[#212121] w-full h-full mt-5 pt-5 pb-5 rounded-xl border-2 shadow-xl border-[#2a2a2a]">
@@ -11,7 +23,7 @@ export function Projects() {
           ) : (
             projects
               .slice(0, 3)
-              .map((project: any) => (
+              .map((project: Project) => (
                 <ProjectItem
                   key={project.id}
                   title={project.title}

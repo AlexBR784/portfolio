@@ -3,7 +3,6 @@ import { Experience } from "@/components/Experience";
 import { Hero } from "@/components/Hero";
 import { Nav } from "@/components/Nav";
 import { Projects } from "@/components/Projects";
-import "@/styles/globals.css";
 
 export default function Home() {
   return (
