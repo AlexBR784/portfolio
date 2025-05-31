@@ -2,8 +2,16 @@
   "version": 3,
   "pages404": true,
   "caseSensitive": false,
-  "basePath": "",
+  "basePath": "/portfolio",
   "redirects": [
+    {
+      "source": "/portfolio/",
+      "destination": "/portfolio",
+      "basePath": false,
+      "internal": true,
+      "statusCode": 308,
+      "regex": "^/portfolio/$"
+    },
     {
       "source": "/:path+/",
       "destination": "/:path+",
@@ -39,5 +47,15 @@
     "pathHeader": "x-nextjs-rewritten-path",
     "queryHeader": "x-nextjs-rewritten-query"
   },
-  "rewrites": []
+  "rewrites": {
+    "beforeFiles": [
+      {
+        "source": "/portfolio//_next/:path+",
+        "destination": "/portfolio/_next/:path+",
+        "regex": "^/portfolio//_next(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))(?:/)?$"
+      }
+    ],
+    "afterFiles": [],
+    "fallback": []
+  }
 }
