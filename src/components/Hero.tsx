@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { getPath } from "../utils/path";
 
 export function Hero() {
   return (
@@ -24,7 +25,7 @@ export function Hero() {
             </div>
           </div>
           <Image
-            src="/images/profile-pic.png"
+            src={getPath("/images/profile-pic.png")}
             alt="Alejandro Bernardo"
             width={128}
             height={128}
@@ -34,7 +35,7 @@ export function Hero() {
         <div>
           <a
             download="CV_Alejandro_Bernardo_Ruperez.pdf"
-            href="/CV/CV_Alejandro_Bernardo_Ruperez.pdf"
+            href={getPath("/CV/CV_Alejandro_Bernardo_Ruperez.pdf")}
             className="bg-[#373737] p-2 text-gray-100 rounded-lg text-sm mt-5 hover:cursor-pointer hover:bg-[#323232] transition-all"
           >
             Descargar CV
