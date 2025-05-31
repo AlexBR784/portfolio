@@ -31,7 +31,7 @@ export function ProjectItem({
           alt={`${title} project thumbnail`}
           width={64}
           height={64}
-          className="rounded-full border-10 border-white/10"
+          className="rounded-full border-10 border-white/10 w-16 h-16 object-cover"
         />
         <div className="flex flex-col gap-2 mt-2">
           <div className="flex flex-row items-center gap-2">

@@ -1,3 +1,4 @@
+import { getPath } from "@/utils/path";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
@@ -33,7 +34,7 @@ export function Experience() {
             {certsDupe.map((cert, index) => (
               <div key={index} className="flex-shrink-0 px-4 rounded mx-2">
                 <Image
-                  src={`/images/certis/${cert}.webp`}
+                  src={getPath(`/images/certis/${cert}.webp`)}
                   alt={cert}
                   width={64}
                   height={64}
