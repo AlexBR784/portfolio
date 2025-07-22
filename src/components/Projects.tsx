@@ -22,7 +22,7 @@ export function Projects() {
             <h1 className="text-gray-200 text-2xl">Upss... No hay proyectos</h1>
           ) : (
             projects
-              .slice(0, 3)
+              .slice(0, 10)
               .map((project: Project) => (
                 <ProjectItem
                   key={project.id}

@@ -27,6 +27,17 @@ export const projects = [
     },
     {
         id: 3,
+        title: "Gestor de recetas",
+        description:
+            "Aplicación web para gestionar recetas de cocina.",
+        imageUrl: getPath("/images/gestor-recetas.png"),
+        link: "https://alexbr784.github.io/gestor-recetas",
+        tech: [
+            { techName: "React", color: "rgb(8, 126, 164)" },{ techName: "TypeScript", color: "#007acc" }, { techName: "Tailwind CSS", color: "#70c595" }
+        ],
+    },
+    {
+        id: 4,
         title: "SF Package Generator",
         description:
             "Permite generar un 'package.xml' de Salesforce a partir de los metadatos anotados en un Excel.",
