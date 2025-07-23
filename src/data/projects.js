@@ -38,6 +38,17 @@ export const projects = [
     },
     {
         id: 4,
+        title: "X One Click Block",
+        description:
+            "Extensión de navegador que permite bloquear usuarios de Twitter/X con un solo clic.",
+        imageUrl: getPath("/images/x-one-click-block.png"),
+        link: "https://github.com/AlexBR784/x-one-click-block",
+        tech: [
+            { techName: "JavaScript", color: "#c7c66a" }
+        ],
+    },
+    {
+        id: 5,
         title: "SF Package Generator",
         description:
             "Permite generar un 'package.xml' de Salesforce a partir de los metadatos anotados en un Excel.",
