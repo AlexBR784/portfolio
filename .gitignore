@@ -3,6 +3,8 @@ dist/
 .next/
 out/
 
+.github/skills
+
 # generated types
 .astro/
 

@@ -7,6 +7,7 @@ export const projects = [
         description:
             "Aplicación web que permite revisar el precio de la luz por horas.",
         imageUrl: getPath("/images/precioenergia.png"),
+        videoUrl: getPath("/videos/precio-energia-demo.mp4"),
         link: "https://alexbr784.github.io/precioenergia",
         tech: [
             { techName: "React", color: "rgb(8, 126, 164)" },
@@ -31,6 +32,7 @@ export const projects = [
         description:
             "Aplicación web para gestionar recetas de cocina.",
         imageUrl: getPath("/images/gestor-recetas.png"),
+        videoUrl: getPath("/videos/gestor-recetas-demo.mp4"),
         link: "https://alexbr784.github.io/gestor-recetas",
         tech: [
             { techName: "React", color: "rgb(8, 126, 164)" },{ techName: "TypeScript", color: "#007acc" }, { techName: "Tailwind CSS", color: "#70c595" }

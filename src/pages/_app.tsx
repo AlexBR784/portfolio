@@ -1,16 +1,18 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { JetBrains_Mono, Chakra_Petch } from "next/font/google";
 import "@/styles/globals.css";
 import { AppProps } from "next/app";
 import Head from "next/head";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const chakraPetch = Chakra_Petch({
+  variable: "--font-chakra",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -21,7 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="description" content="Alejandro Bernardo's developer portfolio" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <div className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <div className={`${jetbrainsMono.variable} ${chakraPetch.variable} antialiased`}>
         <Component {...pageProps} />
       </div>
     </>

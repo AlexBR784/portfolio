@@ -1,1 +1,1 @@
-self.__NEXT_FONT_MANIFEST="{\"pages\":{\"/_app\":[\"static/media/569ce4b8f30dc480-s.p.woff2\",\"static/media/93f479601ee12b01-s.p.woff2\"]},\"app\":{},\"appUsingSizeAdjust\":false,\"pagesUsingSizeAdjust\":true}"
+self.__NEXT_FONT_MANIFEST="{\"pages\":{\"/_app\":[\"static/media/558ca1a6aa3cb55e-s.p.woff2\",\"static/media/e6fd32ec5acdd27d-s.p.woff2\",\"static/media/84f090e3b62fb9e3-s.p.woff2\",\"static/media/6681946d7a6ccbb7-s.p.woff2\",\"static/media/4c7c43bdd7a35c63-s.p.woff2\"]},\"app\":{},\"appUsingSizeAdjust\":false,\"pagesUsingSizeAdjust\":true}"

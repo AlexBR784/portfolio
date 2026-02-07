@@ -1,6 +1,179 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #212121,
-  --color-background: #161616,
+  --color-terminal-bg: #0a0e14;
+  --color-terminal-surface: #131920;
+  --color-terminal-border: #1f2937;
+  --color-cyber-green: #00ff88;
+  --color-cyber-cyan: #00d9ff;
+  --color-cyber-purple: #bd00ff;
+  --color-cyber-yellow: #ffeb3b;
+  --color-terminal-text: #e4e4e7;
+  --color-terminal-muted: #71717a;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-jetbrains);
+    background: var(--color-terminal-bg);
+  }
+}
+
+/* CRT Scanline Effect */
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+.scanline-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.scanline-effect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to bottom, transparent, var(--color-cyber-cyan) 50%, transparent);
+  opacity: 0.15;
+  animation: scanline 8s linear infinite;
+  pointer-events: none;
+  z-index: 50;
+}
+
+/* Glitch Effect */
+@keyframes glitch {
+  0%, 100% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+}
+
+.glitch-text {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch-text:hover {
+  animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/* Terminal Blink */
+@keyframes blink {
+  0%, 49% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
+}
+
+.terminal-cursor {
+  animation: blink 1s step-start infinite;
+}
+
+/* Glow Effect */
+.glow-green {
+  text-shadow: 0 0 10px var(--color-cyber-green), 0 0 20px var(--color-cyber-green);
+}
+
+.glow-cyan {
+  text-shadow: 0 0 10px var(--color-cyber-cyan), 0 0 20px var(--color-cyber-cyan);
+}
+
+.glow-purple {
+  text-shadow: 0 0 10px var(--color-cyber-purple), 0 0 20px var(--color-cyber-purple);
+}
+
+/* Border glow animation */
+@keyframes border-glow {
+  0%, 100% {
+    border-color: var(--color-cyber-green);
+    box-shadow: 0 0 5px var(--color-cyber-green), inset 0 0 5px var(--color-cyber-green);
+  }
+  33% {
+    border-color: var(--color-cyber-cyan);
+    box-shadow: 0 0 5px var(--color-cyber-cyan), inset 0 0 5px var(--color-cyber-cyan);
+  }
+  66% {
+    border-color: var(--color-cyber-purple);
+    box-shadow: 0 0 5px var(--color-cyber-purple), inset 0 0 5px var(--color-cyber-purple);
+  }
+}
+
+.animated-border {
+  animation: border-glow 6s ease-in-out infinite;
+}
+
+/* Terminal Grid */
+.terminal-grid {
+  background-image: 
+    linear-gradient(var(--color-terminal-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-terminal-border) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Code block styling */
+.code-block {
+  position: relative;
+  background: #0d1117;
+  border: 1px solid var(--color-terminal-border);
+  border-left: 3px solid var(--color-cyber-green);
+  padding: 1rem;
+  border-radius: 0.25rem;
+  font-family: var(--font-jetbrains);
+  overflow: hidden;
+}
+
+.code-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    var(--color-cyber-cyan) 50%, 
+    transparent);
+  opacity: 0.5;
+}
+
+/* Video preview hover effect */
+video {
+  display: block;
+}
+
+/* Custom video controls styling */
+video::-webkit-media-controls-panel {
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.5));
+}
+
+video::-webkit-media-controls-play-button {
+  filter: brightness(0) saturate(100%) invert(79%) sepia(56%) saturate(2697%) hue-rotate(86deg) brightness(100%) contrast(104%);
+}
+
+video::-webkit-media-controls-current-time-display,
+video::-webkit-media-controls-time-remaining-display {
+  color: var(--color-cyber-green);
+  font-family: var(--font-jetbrains);
+  font-size: 0.875rem;
 }
