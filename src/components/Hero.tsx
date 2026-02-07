@@ -27,7 +27,7 @@ export function Hero() {
         {/* Header Section */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-3">
           <div className="flex items-center gap-2">
-            <span className="text-[#00ff88] text-xs font-mono">// Role</span>
+            <span className="text-[#00ff88] text-xs font-mono">{'//'} Role</span>
             <p className="text-[#e4e4e7] text-xs sm:text-sm tracking-wider font-mono">
               SOFTWARE_DEVELOPER
             </p>

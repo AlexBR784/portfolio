@@ -18,9 +18,7 @@ interface ProjectItemProps {
   tech: TechItem[];
 }
 
-const techColorMap: { [key: string]: string } = {
-  default: "#00ff88"
-};
+
 
 export function ProjectItem({
   title,
@@ -128,7 +126,7 @@ export function ProjectItem({
               </div>
             </div>
             <p className="text-[#71717a] text-xs sm:text-sm font-mono group-hover:text-[#e4e4e7] transition-colors duration-300">
-              <span className="text-[#00ff88] mr-1">//</span>
+              <span className="text-[#00ff88] mr-1">{'//'}</span>
               {description}
             </p>
           </div>

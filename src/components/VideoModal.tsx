@@ -60,7 +60,7 @@ export function VideoModal({ isOpen, onClose, videoUrl, title }: VideoModalProps
                   <div className="w-3 h-3 rounded-full bg-[#ffbd2e]"></div>
                   <div className="w-3 h-3 rounded-full bg-[#27c93f]"></div>
                 </div>
-                <span className="text-[#71717a] text-sm font-mono">// video:</span>
+                <span className="text-[#71717a] text-sm font-mono">{'//'} video:</span>
                 <span className="text-[#00ff88] text-sm font-mono">{title}.mp4</span>
               </div>
               <button
