@@ -6,11 +6,8 @@ import { Projects } from "@/components/Projects";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-[#0a0e14] scanline-effect">
-      {/* Terminal Grid Background */}
-      <div className="fixed inset-0 terminal-grid opacity-20 pointer-events-none" />
-      
-      <div className="bg-[#0a0e14] w-full xl:w-1/2 2xl:w-1/3 pt-10 pb-5 flex flex-col relative z-10">
+    <main className="min-h-screen bg-linear-canvas text-linear-ink">
+      <div className="mx-auto flex w-full max-w-[1280px] flex-col px-4 py-4 sm:px-6 lg:px-8">
         <Nav />
         <Hero />
         <Projects />

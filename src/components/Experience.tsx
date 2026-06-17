@@ -14,89 +14,63 @@ const certs = [
 ];
 
 export function Experience() {
-  // Duplicamos las certificaciones para crear el efecto de bucle infinito
   const certsDupe = [...certs, ...certs, ...certs];
 
   return (
-    <div id="experience" className="flex flex-col justify-center bg-[#131920] w-full h-full mt-5 border-l-4 border-[#ffeb3b] shadow-xl mx-4 font-[family-name:var(--font-jetbrains)]">
-      {/* Section Header */}
-      <div className="flex items-center gap-3 px-6 pt-6 mb-4">
-        <span className="text-[#ffeb3b] text-sm font-mono">{'['}</span>
-        <h2 className="text-[#e4e4e7] text-base sm:text-lg uppercase tracking-widest font-bold">
-          Certifications
-        </h2>
-        <span className="text-[#ffeb3b] text-sm font-mono">{']'}</span>
-        <div className="flex-1 h-px bg-gradient-to-r from-[#ffeb3b] to-transparent"></div>
-      </div>
-
-      {/* Scrolling Certifications */}
-      <div className="relative overflow-hidden w-full px-3 pb-6">
-        {/* Gradient overlays for fade effect */}
-        <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[#131920] to-transparent z-10 pointer-events-none"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[#131920] to-transparent z-10 pointer-events-none"></div>
-
-        <motion.div
-          className="flex gap-6 w-max"
-          animate={{ x: ["0%", "-33.333%"] }}
-          transition={{
-            repeat: Infinity,
-            repeatType: "loop",
-            duration: 25,
-            ease: "linear",
-          }}
-        >
-          {certsDupe.map((cert, index) => (
-            <motion.div
-              key={index}
-              className="flex-shrink-0 relative group"
-              whileHover={{ scale: 1.1 }}
-              transition={{ duration: 0.2 }}
-            >
-              <div className="relative">
-                {/* Certificate border frame */}
-                <div className="absolute inset-0 border border-[#1f2937] group-hover:border-[#ffeb3b] transition-colors duration-300"></div>
-                
-                {/* Corner accents */}
-                <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-[#ffeb3b] opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <div className="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-[#ffeb3b] opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <div className="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-[#ffeb3b] opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-[#ffeb3b] opacity-0 group-hover:opacity-100 transition-opacity"></div>
-
-                <div className="bg-[#0a0e14] p-2">
-                  <Image
-                    src={getPath(`/images/certis/${cert}.webp`)}
-                    alt={cert}
-                    width={72}
-                    height={72}
-                    className="w-16 h-16 sm:w-18 sm:h-18 object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
-                  />
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-
-      {/* Status Bar */}
-      <div className="px-6 pb-6">
-        <div className="flex items-center gap-2 text-xs font-mono text-[#71717a]">
-          <span className="text-[#ffeb3b]">{'// '}</span>
-          <span>Loading certifications from API...</span>
-          <motion.span
-            animate={{ opacity: [1, 0, 1] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
-          >
-            █
-          </motion.span>
+    <section id="experience" className="py-12 sm:py-16">
+      <div className="linear-panel overflow-hidden">
+        <div className="grid gap-6 border-b border-linear-hairline p-6 sm:p-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+          <div>
+            <p className="linear-eyebrow">Credenciales</p>
+            <h2 className="mt-3 text-4xl font-semibold leading-tight tracking-[-0.04em] text-linear-ink sm:text-5xl">
+              Certificaciones
+            </h2>
+          </div>
+          <p className="max-w-2xl text-sm leading-6 text-linear-ink-subtle lg:justify-self-end">
+            Certificaciones orientadas a Salesforce, desarrollo frontend y construcción de soluciones empresariales.
+          </p>
         </div>
-        <div className="mt-2 h-1 bg-[#1f2937] overflow-hidden">
+
+        <div className="relative overflow-hidden px-4 py-8 sm:px-6">
+          <div className="pointer-events-none absolute bottom-0 left-0 top-0 z-10 w-24 bg-gradient-to-r from-linear-surface-1 to-transparent" />
+          <div className="pointer-events-none absolute bottom-0 right-0 top-0 z-10 w-24 bg-gradient-to-l from-linear-surface-1 to-transparent" />
+
           <motion.div
-            className="h-full bg-gradient-to-r from-[#ffeb3b] via-[#00ff88] to-[#00d9ff]"
-            animate={{ x: ["-100%", "200%"] }}
-            transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
-          />
+            className="flex w-max gap-4"
+            animate={{ x: ["0%", "-33.333%"] }}
+            transition={{
+              repeat: Infinity,
+              repeatType: "loop",
+              duration: 28,
+              ease: "linear",
+            }}
+          >
+            {certsDupe.map((cert, index) => (
+              <motion.div
+                key={`${cert}-${index}`}
+                className="linear-card flex h-24 w-24 flex-shrink-0 items-center justify-center bg-linear-canvas p-3 transition-colors hover:bg-linear-surface-2 sm:h-28 sm:w-28"
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.18 }}
+              >
+                <Image
+                  src={getPath(`/images/certis/${cert}.webp`)}
+                  alt={cert}
+                  width={80}
+                  height={80}
+                  className="h-16 w-16 object-contain sm:h-20 sm:w-20"
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+
+        <div className="flex flex-col gap-3 border-t border-linear-hairline px-6 py-5 text-sm text-linear-ink-subtle sm:flex-row sm:items-center sm:justify-between">
+          <span>Salesforce, JavaScript y arquitectura de soluciones.</span>
+          <span className="rounded-full border border-linear-hairline bg-linear-surface-2 px-3 py-1 text-xs text-linear-ink-muted">
+            {certs.length} certificaciones
+          </span>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

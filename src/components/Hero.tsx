@@ -2,207 +2,155 @@
 import Image from "next/image";
 import { getPath } from "../utils/path";
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+
+const stack = ["Salesforce", "React", "Next.js", "TypeScript", "Tailwind CSS"];
+
+const profileRows = [
+  { label: "Actual", value: "NTT DATA", detail: "Engineer" },
+  { label: "Foco", value: "Implementación Salesforce", detail: "CRM, automatización y herramientas de negocio" },
+  { label: "Interfaces", value: "Producto web", detail: "Aplicaciones claras, mantenibles y orientadas a usuario" },
+];
 
 export function Hero() {
-  const [displayText, setDisplayText] = useState("");
-  const fullText = "Alejandro Bernardo";
-  
-  useEffect(() => {
-    let index = 0;
-    const interval = setInterval(() => {
-      if (index <= fullText.length) {
-        setDisplayText(fullText.substring(0, index));
-        index++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 80);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <div id="#home" className="flex flex-col items-center justify-center px-4 bg-[#131920] w-full h-full mt-5 border-l-4 border-[#00d9ff] shadow-xl mx-4 font-[family-name:var(--font-jetbrains)]">
-      <div className="w-full h-full p-6">
-        {/* Header Section */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-3">
-          <div className="flex items-center gap-2">
-            <span className="text-[#00ff88] text-xs font-mono">{'//'} Role</span>
-            <p className="text-[#e4e4e7] text-xs sm:text-sm tracking-wider font-mono">
-              SOFTWARE_DEVELOPER
-            </p>
-          </div>
-          <div className="bg-[#00d9ff]/10 border border-[#00d9ff] text-[#00d9ff] rounded px-3 py-1 text-xs font-mono uppercase tracking-wider">
-            <span className="inline-block w-2 h-2 bg-[#00d9ff] rounded-full mr-2 animate-pulse"></span>
-            NTT_DATA
-          </div>
+    <section
+      id="home"
+      className="grid gap-10 py-14 sm:py-18 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:py-20"
+    >
+      <motion.div
+        className="max-w-2xl"
+        initial={{ opacity: 0, y: 18 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="mb-5 flex items-center gap-3">
+          <Image
+            src={getPath("/images/profile-pic.png")}
+            alt="Alejandro Bernardo"
+            width={44}
+            height={44}
+            priority
+            className="h-11 w-11 rounded-full object-cover grayscale-[20%]"
+          />
+          <p className="linear-eyebrow">Ingeniero en NTT DATA</p>
         </div>
+        <h1 className="max-w-3xl text-5xl font-semibold leading-[1.04] tracking-normal text-linear-ink sm:text-6xl lg:text-[72px]">
+          Alejandro Bernardo
+        </h1>
+        <p className="mt-6 max-w-[620px] text-lg leading-8 tracking-normal text-linear-ink-muted sm:text-[19px]">
+          Ingeniero Multimedia especializado en Salesforce, React y productos web con interfaces claras, mantenibles y orientadas a usuario.
+        </p>
 
-        {/* Main Content */}
-        <div className="flex flex-col-reverse sm:flex-row items-center justify-center gap-8 mt-8">
-          <div className="flex flex-col items-center sm:items-start justify-center gap-4 flex-1">
-            {/* Terminal-style output */}
-            <div className="code-block w-full max-w-md mx-auto sm:mx-0">
-              <div className="flex items-center gap-2 mb-3 text-xs text-[#71717a]">
-                <span className="text-[#00ff88]">{'// '}</span>
-                <span>developer.ts</span>
-              </div>
-              <div className="space-y-2">
-                <div className="text-[#e4e4e7] text-base sm:text-lg font-mono">
-                  <span className="text-[#bd00ff]">interface </span>
-                  <span className="text-[#00d9ff]">Developer</span>
-                  <span className="text-[#71717a]"> </span>
-                  <span className="text-[#ffeb3b]">&#123;</span>
-                </div>
-                <motion.div 
-                  className="ml-4 text-sm sm:text-base"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.5 }}
-                >
-                  <span className="text-[#bd00ff]">name</span>
-                  <span className="text-[#71717a]">: </span>
-                  <span className="text-[#ffeb3b]">string</span>
-                  <span className="text-[#71717a]">;</span>
-                </motion.div>
-                <motion.div 
-                  className="ml-4 text-xs sm:text-sm text-[#e4e4e7]"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.8 }}
-                >
-                  <span className="text-[#bd00ff]">degree</span>
-                  <span className="text-[#71717a]">: </span>
-                  <span className="text-[#ffeb3b]">string</span>
-                  <span className="text-[#71717a]">;</span>
-                </motion.div>
-                <motion.div 
-                  className="ml-4 text-xs sm:text-sm text-[#e4e4e7]"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1.1 }}
-                >
-                  <span className="text-[#bd00ff]">stack</span>
-                  <span className="text-[#71717a]">: </span>
-                  <span className="text-[#ffeb3b]">string</span>
-                  <span className="text-[#71717a]">[];</span>
-                </motion.div>
-                <div className="text-[#e4e4e7] text-sm sm:text-base">
-                  <span className="text-[#ffeb3b]">&#125;</span>
-                </div>
-
-                {/* Implementation */}
-                <motion.div 
-                  className="text-[#e4e4e7] text-base sm:text-lg font-mono mt-4"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1.4 }}
-                >
-                  <span className="text-[#71717a]">const </span>
-                  <span className="text-[#00d9ff]">alejandro</span>
-                  <span className="text-[#71717a]">: Developer = &#123;</span>
-                </motion.div>
-                <motion.div 
-                  className="ml-4 text-sm sm:text-base"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1.7 }}
-                >
-                  <span className="text-[#bd00ff]">name</span>
-                  <span className="text-[#71717a]">: </span>
-                  <span className="text-[#00ff88] glow-green">&quot;{displayText}</span>
-                  {displayText.length < fullText.length && (
-                    <span className="terminal-cursor text-[#00ff88]">█</span>
-                  )}
-                  {displayText.length === fullText.length && (
-                    <span className="text-[#00ff88]">&quot;</span>
-                  )}
-                  <span className="text-[#71717a]">,</span>
-                </motion.div>
-                <motion.div 
-                  className="ml-4 text-xs sm:text-sm text-[#e4e4e7]"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 2 }}
-                >
-                  <span className="text-[#bd00ff]">degree</span>
-                  <span className="text-[#71717a]">: </span>
-                  <span className="text-[#00ff88]">&quot;Ing. Multimedia&quot;</span>
-                  <span className="text-[#71717a]">,</span>
-                </motion.div>
-                <motion.div 
-                  className="ml-4 text-xs sm:text-sm text-[#e4e4e7]"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 2.3 }}
-                >
-                  <span className="text-[#bd00ff]">stack</span>
-                  <span className="text-[#71717a]">: [</span>
-                  <span className="text-[#00ff88]">&quot;Salesforce&quot;</span>
-                  <span className="text-[#71717a]">, </span>
-                  <span className="text-[#00ff88]">&quot;React&quot;</span>
-                  <span className="text-[#71717a]">]</span>
-                </motion.div>
-                <div className="text-[#e4e4e7] text-sm sm:text-base">
-                  <span className="text-[#ffeb3b]">&#125;</span>
-                  <span className="text-[#71717a]">;</span>
-                </div>
-              </div>
-            </div>
-            
-            {/* Download CV Button */}
-            <motion.div 
-              className="flex w-full justify-center sm:justify-start mt-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 2.6 }}
-            >
-              <a
-                download="CV_Alejandro_Bernardo_Ruperez.pdf"
-                href={getPath("/CV/CV_Alejandro_Bernardo_Ruperez.pdf")}
-                className="group relative bg-[#0a0e14] border-2 border-[#00ff88] px-6 py-3 text-[#00ff88] font-mono text-sm hover:bg-[#00ff88] hover:text-[#0a0e14] transition-all duration-300 overflow-hidden"
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  <span>{'npm run '}</span>
-                  <span className="tracking-wider">download:cv</span>
-                </span>
-                <motion.div
-                  className="absolute inset-0 bg-[#00ff88]"
-                  initial={{ x: '-100%' }}
-                  whileHover={{ x: 0 }}
-                  transition={{ duration: 0.3 }}
-                  style={{ zIndex: 0 }}
-                />
-              </a>
-            </motion.div>
-          </div>
-
-          {/* Profile Image with Terminal Frame */}
-          <motion.div 
-            className="relative"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3 }}
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <a
+            download="CV_Alejandro_Bernardo_Ruperez.pdf"
+            href={getPath("/CV/CV_Alejandro_Bernardo_Ruperez.pdf")}
+            className="linear-button-primary inline-flex items-center justify-center px-4"
           >
-            <div className="relative p-1 bg-gradient-to-br from-[#00ff88] via-[#00d9ff] to-[#bd00ff]">
-              <div className="bg-[#0a0e14] p-2">
-                <Image
-                  src={getPath("/images/profile-pic.png")}
-                  alt="Alejandro Bernardo"
-                  width={120}
-                  height={120}
-                  className="w-28 h-28 sm:w-32 sm:h-32 object-cover grayscale hover:grayscale-0 transition-all duration-500"
-                />
-              </div>
-            </div>
-            {/* Corner accents */}
-            <div className="absolute -top-2 -left-2 w-4 h-4 border-t-2 border-l-2 border-[#00ff88]"></div>
-            <div className="absolute -top-2 -right-2 w-4 h-4 border-t-2 border-r-2 border-[#00d9ff]"></div>
-            <div className="absolute -bottom-2 -left-2 w-4 h-4 border-b-2 border-l-2 border-[#bd00ff]"></div>
-            <div className="absolute -bottom-2 -right-2 w-4 h-4 border-b-2 border-r-2 border-[#00ff88]"></div>
-          </motion.div>
+            Descargar CV
+          </a>
+          <a
+            href="#projects"
+            className="linear-button-secondary inline-flex items-center justify-center px-4"
+          >
+            Ver proyectos
+          </a>
         </div>
-      </div>
-    </div>
+
+        <div className="mt-10 flex max-w-xl border-t border-linear-hairline pt-5 text-sm text-linear-ink-subtle">
+          <span>Disponible para colaborar en producto, frontend y Salesforce.</span>
+        </div>
+      </motion.div>
+
+      <motion.div
+        className="linear-panel overflow-hidden"
+        initial={{ opacity: 0, y: 22 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.55, delay: 0.12 }}
+      >
+        <div className="flex items-center justify-between border-b border-linear-hairline px-5 py-4 sm:px-6">
+          <div className="flex items-center gap-3">
+            <div>
+              <p className="text-sm font-medium text-linear-ink">Perfil profesional</p>
+              <p className="mt-1 text-xs text-linear-ink-subtle">Porfolio / 2026</p>
+            </div>
+          </div>
+          <span className="rounded-md border border-linear-hairline bg-linear-surface-2 px-2.5 py-1 text-xs text-linear-ink-muted">
+            Activo
+          </span>
+        </div>
+
+        <div className="p-5 sm:p-6">
+          <div className="rounded-xl border border-linear-hairline bg-linear-surface-2 p-4">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+              <div>
+                <p className="text-xs text-linear-ink-tertiary">Perfil actual</p>
+                <p className="mt-2 text-2xl font-semibold leading-tight tracking-normal text-linear-ink">
+                  Ingeniero · Salesforce + interfaces web
+                </p>
+                <p className="mt-3 max-w-xl text-sm leading-6 text-linear-ink-subtle">
+                  Implementación, interfaces de producto y herramientas internas para flujos web prácticos.
+                </p>
+              </div>
+              <span className="w-fit rounded-md border border-linear-hairline bg-linear-canvas px-2.5 py-1 text-xs text-linear-ink-muted">
+                ES / Remoto
+              </span>
+            </div>
+          </div>
+
+          <div className="mt-4 grid gap-3 sm:grid-cols-3">
+            <div className="rounded-xl border border-linear-hairline bg-linear-canvas p-4">
+              <p className="text-xs text-linear-ink-tertiary">Proyectos</p>
+              <p className="mt-2 text-2xl font-semibold leading-none text-linear-ink">6</p>
+            </div>
+            <div className="rounded-xl border border-linear-hairline bg-linear-canvas p-4">
+              <p className="text-xs text-linear-ink-tertiary">Certificaciones</p>
+              <p className="mt-2 text-2xl font-semibold leading-none text-linear-ink">7</p>
+            </div>
+            <div className="rounded-xl border border-linear-hairline bg-linear-canvas p-4">
+              <p className="text-xs text-linear-ink-tertiary">Modo</p>
+              <p className="mt-2 text-sm font-medium leading-5 text-linear-ink">Producto web</p>
+            </div>
+          </div>
+
+          <div className="mt-4 overflow-hidden rounded-xl border border-linear-hairline">
+            {profileRows.map((row, index) => (
+              <div
+                key={row.label}
+                className="grid gap-2 border-linear-hairline bg-linear-surface-1 px-4 py-3 sm:grid-cols-[120px_1fr] sm:items-center [&:not(:last-child)]:border-b"
+              >
+                <p className="text-xs text-linear-ink-tertiary">{row.label}</p>
+                <div>
+                  <p className="text-sm font-medium text-linear-ink">{row.value}</p>
+                  <p className="mt-1 text-xs text-linear-ink-subtle">{row.detail}</p>
+                </div>
+                {index === 0 ? (
+                  <span className="hidden" aria-hidden="true">
+                    actual
+                  </span>
+                ) : null}
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-4 rounded-xl border border-linear-hairline bg-linear-surface-2 p-4">
+            <div className="mb-3 flex items-center justify-between gap-3">
+              <p className="text-sm font-medium text-linear-ink">Stack principal</p>
+              <p className="text-xs text-linear-ink-tertiary">Actualizado</p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {stack.map((item) => (
+                <span
+                  key={item}
+                  className="rounded-md border border-linear-hairline bg-linear-canvas px-2.5 py-1 text-xs text-linear-ink-muted"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </section>
   );
 }

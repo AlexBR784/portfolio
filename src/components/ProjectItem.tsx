@@ -16,9 +16,8 @@ interface ProjectItemProps {
   videoUrl?: string;
   link: string;
   tech: TechItem[];
+  variant?: "featured" | "compact";
 }
-
-
 
 export function ProjectItem({
   title,
@@ -27,37 +26,78 @@ export function ProjectItem({
   videoUrl,
   link,
   tech,
+  variant = "compact",
 }: ProjectItemProps) {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
-  const handleClick = () => {
-    if (videoUrl) {
-      setIsVideoModalOpen(true);
-    } else {
-      window.open(link, "_blank");
-    }
-  };
+  const metadata = videoUrl ? "Demo disponible" : "Proyecto";
 
-  return (
-    <>
-      <motion.div
-        className="group relative flex flex-col sm:flex-row items-center justify-between hover:cursor-pointer bg-[#0a0e14] border border-[#1f2937] hover:border-[#00ff88] transition-all duration-300 overflow-hidden font-[family-name:var(--font-jetbrains)]"
-        onClick={handleClick}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        initial={{ opacity: 0, x: -20 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        whileHover={{ x: 4 }}
-      >
-        {/* Left accent line */}
-        <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[#00ff88] via-[#00d9ff] to-[#bd00ff] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        
-        <div className="flex flex-col sm:flex-row items-center gap-4 w-full p-4 sm:p-5">
-          {/* Project Image/Video Preview */}
-          <div className="relative flex-shrink-0">
-            <div className="relative w-16 h-16 border-2 border-[#1f2937] group-hover:border-[#00d9ff] transition-colors duration-300 overflow-hidden">
+  if (variant === "featured") {
+    return (
+      <>
+        <motion.article
+          className="linear-panel grid gap-5 overflow-hidden p-4 transition-colors duration-200 hover:border-linear-hairline-strong sm:p-5 lg:grid-cols-[1fr_260px] lg:items-center"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          whileHover={{ y: -2 }}
+        >
+          <div className="order-2 lg:order-1">
+            <div className="mb-4 flex flex-wrap items-center gap-2">
+              <span className="rounded-md border border-linear-hairline bg-linear-surface-2 px-2 py-1 text-xs text-linear-ink-muted">
+                Proyecto destacado
+              </span>
+              <span className="rounded-md border border-linear-hairline bg-linear-canvas px-2 py-1 text-xs text-linear-ink-tertiary">
+                {metadata}
+              </span>
+            </div>
+
+            <h3 className="text-3xl font-semibold leading-tight tracking-normal text-linear-ink sm:text-4xl">
+              {title}
+            </h3>
+            <p className="mt-4 max-w-xl text-sm leading-6 text-linear-ink-subtle sm:text-base">
+              {description}
+            </p>
+
+            <div className="mt-5 flex flex-wrap gap-2">
+              {tech.map((item, index) => (
+                <span
+                  key={`${item.techName}-${index}`}
+                  className="rounded-md border border-linear-hairline bg-linear-surface-2 px-2.5 py-1 text-xs text-linear-ink-muted"
+                >
+                  {item.techName}
+                </span>
+              ))}
+            </div>
+
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              {videoUrl ? (
+                <button
+                  type="button"
+                  onClick={() => setIsVideoModalOpen(true)}
+                  className="linear-button-primary inline-flex items-center justify-center px-4"
+                >
+                  Ver demo
+                </button>
+              ) : null}
+              <a
+                href={link}
+                target="_blank"
+                rel="noreferrer"
+                className="linear-button-secondary inline-flex items-center justify-center px-4"
+              >
+                Abrir proyecto
+              </a>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            className="order-1 overflow-hidden rounded-xl border border-linear-hairline bg-linear-canvas text-left lg:order-2 lg:justify-self-end"
+            onClick={() => (videoUrl ? setIsVideoModalOpen(true) : window.open(link, "_blank"))}
+            aria-label={videoUrl ? `Ver demo de ${title}` : `Abrir ${title}`}
+          >
+            <div className="relative aspect-[16/10] w-full lg:w-[260px]">
               {videoUrl && isHovered ? (
                 <video
                   src={videoUrl}
@@ -65,175 +105,117 @@ export function ProjectItem({
                   loop
                   muted
                   playsInline
-                  className="w-full h-full object-cover"
+                  className="h-full w-full object-cover opacity-85 grayscale-[10%] saturate-[0.82]"
                 />
               ) : (
                 <Image
                   src={imageUrl}
-                  alt={`${title} thumbnail`}
-                  width={64}
-                  height={64}
-                  className="w-full h-full object-cover"
+                  alt={`${title} screenshot`}
+                  width={760}
+                  height={428}
+                  className="h-full w-full object-cover opacity-85 grayscale-[10%] saturate-[0.82] transition-transform duration-500 hover:scale-[1.02]"
                 />
               )}
+              <div className="absolute inset-0 bg-linear-canvas/10" />
             </div>
-            
-            {/* Video badge */}
-            {videoUrl && (
-              <motion.div 
-                className="absolute -bottom-1 -right-1 bg-[#00ff88] border border-[#0a0e14] rounded-full p-1"
-                initial={{ scale: 0 }}
-                animate={{ scale: isHovered ? 1.2 : 1 }}
-                transition={{ duration: 0.2 }}
+          </button>
+        </motion.article>
+
+        {videoUrl && (
+          <VideoModal
+            isOpen={isVideoModalOpen}
+            onClose={() => setIsVideoModalOpen(false)}
+            videoUrl={videoUrl}
+            title={title}
+          />
+        )}
+      </>
+    );
+  }
+
+  return (
+    <>
+      <article
+        className="grid gap-4 bg-linear-surface-1 px-4 py-4 transition-colors duration-200 hover:bg-linear-surface-2 sm:grid-cols-[1fr_112px] sm:items-center sm:px-5"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <div className="min-w-0">
+          <div className="mb-2 flex flex-wrap items-center gap-2">
+            <h3 className="text-lg font-medium leading-tight tracking-normal text-linear-ink">
+              {title}
+            </h3>
+            <span className="rounded-md border border-linear-hairline bg-linear-canvas px-2 py-0.5 text-xs text-linear-ink-tertiary">
+              {metadata}
+            </span>
+          </div>
+
+          <p className="max-w-2xl text-sm leading-6 text-linear-ink-subtle">
+            {description}
+          </p>
+
+          <div className="mt-3 flex flex-wrap gap-2">
+            {tech.map((item, index) => (
+              <span
+                key={`${item.techName}-${index}`}
+                className="rounded-md border border-linear-hairline bg-linear-canvas px-2 py-0.5 text-xs text-linear-ink-muted"
               >
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  width="10" 
-                  height="10" 
-                  viewBox="0 0 24 24" 
-                  fill="#0a0e14"
-                >
-                  <path d="M8 5v14l11-7z"/>
-                </svg>
-              </motion.div>
-            )}
-            
-            {/* Corner accents */}
-            <div className="absolute -top-1 -left-1 w-2 h-2 border-t border-l border-[#00ff88] opacity-0 group-hover:opacity-100 transition-opacity" />
-            <div className="absolute -bottom-1 -right-1 w-2 h-2 border-b border-r border-[#00ff88] opacity-0 group-hover:opacity-100 transition-opacity" />
+                {item.techName}
+              </span>
+            ))}
           </div>
 
-          {/* Project Info */}
-          <div className="flex flex-col gap-3 flex-1 text-center sm:text-left">
-            <div className="flex flex-col sm:flex-row sm:items-center gap-2 flex-wrap">
-              <h3 className="text-[#e4e4e7] font-semibold text-sm sm:text-base uppercase tracking-wider group-hover:text-[#00ff88] transition-colors duration-300">
-                <span className="text-[#00d9ff] mr-2">{'{'}</span>
-                {title}
-                <span className="text-[#00d9ff] ml-2">{'}'}</span>
-              </h3>
-              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
-                {tech.map((item, index) => (
-                  <span
-                    key={index}
-                    className="text-[#0a0e14] text-[0.65rem] font-mono px-2 py-0.5 border border-transparent font-semibold uppercase tracking-wide"
-                    style={{
-                      backgroundColor: item.color,
-                    }}
-                  >
-                    {item.techName}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <p className="text-[#71717a] text-xs sm:text-sm font-mono group-hover:text-[#e4e4e7] transition-colors duration-300">
-              <span className="text-[#00ff88] mr-1">{'//'}</span>
-              {description}
-            </p>
-          </div>
-
-          {/* Action Icon - Desktop */}
-          <div className="hidden sm:flex items-center justify-center flex-shrink-0 px-3">
+          <div className="mt-4 flex flex-wrap gap-2">
             {videoUrl ? (
-              <motion.div
-                className="text-[#71717a] group-hover:text-[#00ff88] transition-all duration-300"
-                animate={{ scale: isHovered ? 1.2 : 1 }}
+              <button
+                type="button"
+                onClick={() => setIsVideoModalOpen(true)}
+                className="linear-button-primary inline-flex min-h-9 items-center justify-center px-3"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                </svg>
-              </motion.div>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-[#71717a] group-hover:text-[#00ff88] group-hover:translate-x-1 transition-all duration-300"
-              >
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            )}
-          </div>
-
-          {/* Tap/Play indicator - Mobile */}
-          <div className="flex sm:hidden items-center gap-1 absolute top-2 right-2 text-[#71717a]">
-            {videoUrl ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="opacity-60"
-              >
-                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                className="opacity-60"
-              >
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            )}
-          </div>
-
-          {/* External link button for video projects */}
-          {videoUrl && (
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                window.open(link, "_blank");
-              }}
-              className="absolute top-2 right-2 sm:relative sm:top-auto sm:right-auto hidden sm:block bg-[#0a0e14] border border-[#1f2937] hover:border-[#00d9ff] p-2 transition-colors group/link"
-              title="Visit project"
+                Ver demo
+              </button>
+            ) : null}
+            <a
+              href={link}
+              target="_blank"
+              rel="noreferrer"
+              className="linear-button-secondary inline-flex min-h-9 items-center justify-center px-3"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-[#71717a] group-hover/link:text-[#00d9ff] transition-colors"
-              >
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                <polyline points="15 3 21 3 21 9"></polyline>
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-              </svg>
-            </button>
-          )}
+              Abrir
+            </a>
+          </div>
         </div>
 
-        {/* Hover glow effect */}
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#00ff88]/5 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 pointer-events-none" />
-      </motion.div>
+        <button
+          type="button"
+          className="overflow-hidden rounded-lg border border-linear-hairline bg-linear-canvas sm:justify-self-end"
+          onClick={() => (videoUrl ? setIsVideoModalOpen(true) : window.open(link, "_blank"))}
+          aria-label={videoUrl ? `Ver demo de ${title}` : `Abrir ${title}`}
+        >
+          <div className="relative aspect-[4/3] w-full sm:w-28">
+            {videoUrl && isHovered ? (
+              <video
+                src={videoUrl}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="h-full w-full object-cover opacity-78 grayscale-[15%] saturate-[0.72]"
+              />
+            ) : (
+              <Image
+                src={imageUrl}
+                alt={`${title} screenshot`}
+                width={280}
+                height={175}
+                className="h-full w-full object-cover opacity-78 grayscale-[15%] saturate-[0.72]"
+              />
+            )}
+            <div className="absolute inset-0 bg-linear-canvas/15" />
+          </div>
+        </button>
+      </article>
 
-      {/* Video Modal */}
       {videoUrl && (
         <VideoModal
           isOpen={isVideoModalOpen}
